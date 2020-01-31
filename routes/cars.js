@@ -1,8 +1,14 @@
 const path = require('path');
 const uuid = require('uuid/v4');
 const connectDatabase = require('../utils/connectDatabase');
+const wordLookup = require('../utils/wordLookup');
 
 const dbPath = path.resolve(__dirname, '../data/db.sqlite');
+
+const mapSimilarModels = async result => result ? ({
+  ...result,
+  similarModels: await wordLookup(result.model),
+}) : result;
 
 const createTable = db => new Promise((resolve, reject) => {
   db.run(`CREATE TABLE IF NOT EXISTS cars(
@@ -120,14 +126,14 @@ module.exports.get = async (id) => {
     });
   });
 
-  return result;
+  return mapSimilarModels(result);
 };
 
 module.exports.all = async () => {
   const db = await connectDatabase(dbPath);
   await createTable(db);
 
-  const result = await new Promise((resolve, reject) => {
+  let results = await new Promise((resolve, reject) => {
     db.all("SELECT * FROM cars WHERE 1", {}, function (err, rows) {
       if (!err) return resolve(rows);
 
@@ -135,5 +141,9 @@ module.exports.all = async () => {
     });
   });
 
-  return result;
+  results = await Promise.all(results.map(async result => {
+    return mapSimilarModels(result);
+  }));
+
+  return results;
 };
