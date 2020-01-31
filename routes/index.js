@@ -1,4 +1,4 @@
-const { add, all, get, update } = require('./cars');
+const { add, all, get, update, remove } = require('./cars');
 
 module.exports = app => {
   app.get('/cars', async (req, res) => {
@@ -39,6 +39,18 @@ module.exports = app => {
       const car = await update({
         id: req.params.id,
         ...req.body,
+      });
+      res.json(car);
+    } catch (e) {
+      console.log(e);
+      res.status(500).send({ error: 'something is wrong' });
+    }
+  });
+
+  app.delete('/cars/:id', async (req, res) => {
+    try {
+      const car = await remove({
+        id: req.params.id,
       });
       res.json(car);
     } catch (e) {

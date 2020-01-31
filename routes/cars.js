@@ -82,6 +82,30 @@ module.exports.update = async ({
   };
 };
 
+module.exports.remove = async ({
+  id,
+}) => {
+  const db = await connectDatabase(dbPath);
+  await createTable(db);
+
+  const stmt = db.prepare("DELETE FROM cars WHERE id = $id");
+  await new Promise((resolve, reject) => {
+    if (!id) return reject(new Error('no id specified'));
+    stmt.run({
+      $id: id,
+    }, err => {
+      if (!err) return resolve();
+
+      reject(err);
+    });
+    stmt.finalize();
+  });
+
+  return {
+    id,
+  };
+};
+
 module.exports.get = async (id) => {
   const db = await connectDatabase(dbPath);
   await createTable(db);
