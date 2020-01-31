@@ -17,7 +17,7 @@ const createTable = db => new Promise((resolve, reject) => {
     model TEXT,
     colour TEXT,
     year TEXT
-  )`, function (err) {
+  )`, err => {
     if (!err) return resolve();
 
     reject(err);

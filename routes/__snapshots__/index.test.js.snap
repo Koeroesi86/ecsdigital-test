@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The routes should register routes 1`] = `
+Array [
+  Array [
+    "/cars",
+    [Function],
+  ],
+  Array [
+    "/cars/:id",
+    [Function],
+  ],
+]
+`;
+
+exports[`The routes should register routes 2`] = `
+Array [
+  Array [
+    "/cars",
+    [Function],
+  ],
+]
+`;
+
+exports[`The routes should register routes 3`] = `
+Array [
+  Array [
+    "/cars/:id",
+    [Function],
+  ],
+]
+`;
+
+exports[`The routes should register routes 4`] = `
+Array [
+  Array [
+    "/cars/:id",
+    [Function],
+  ],
+]
+`;

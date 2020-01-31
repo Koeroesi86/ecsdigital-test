@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The cars routes should add 1`] = `
+Array [
+  Array [
+    Object {
+      "$colour": "testcolour",
+      "$id": "mockid",
+      "$make": "testmake",
+      "$model": "testmodel",
+      "$year": "testyear",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`The cars routes should call sqlite3.Database.all 1`] = `
+Array [
+  Array [
+    "SELECT * FROM cars WHERE 1",
+    Object {},
+    [Function],
+  ],
+]
+`;
+
+exports[`The cars routes should call sqlite3.Database.get 1`] = `
+Array [
+  Array [
+    "SELECT * FROM cars WHERE id = $id",
+    Object {
+      "$id": "test",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`The cars routes should handle table creation error 1`] = `[Error: error]`;
+
+exports[`The cars routes should ignore word search 1`] = `undefined`;
+
+exports[`The cars routes should not remove without id 1`] = `[Error: no id specified]`;
+
+exports[`The cars routes should remove 1`] = `
+Array [
+  Array [
+    Object {
+      "$id": "testid",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`The cars routes should update 1`] = `
+Array [
+  Array [
+    "UPDATE cars SET make = $make, model = $model, colour = $colour, year = $year WHERE id = $id",
+  ],
+]
+`;
+
+exports[`The cars routes should update 2`] = `
+Array [
+  Array [
+    Object {
+      "$colour": "testcolour",
+      "$id": "testid",
+      "$make": "testmake",
+      "$model": "testmodel",
+      "$year": "testyear",
+    },
+    [Function],
+  ],
+]
+`;

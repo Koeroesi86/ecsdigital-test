@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The connectDatabase should call sqlite3 1`] = `
+Array [
+  Array [
+    "D:\\\\Chris\\\\Documents\\\\Developement\\\\tests\\\\ecsdigital\\\\ecsdigital-test\\\\example",
+    [Function],
+  ],
+]
+`;
+
+exports[`The connectDatabase should handle failure 1`] = `[Error: test]`;
+
+exports[`The connectDatabase should reuse database instance 1`] = `
+Array [
+  Array [
+    "D:\\\\Chris\\\\Documents\\\\Developement\\\\tests\\\\ecsdigital\\\\ecsdigital-test\\\\example",
+    [Function],
+  ],
+  Array [
+    "D:\\\\Chris\\\\Documents\\\\Developement\\\\tests\\\\ecsdigital\\\\ecsdigital-test\\\\example",
+    [Function],
+  ],
+]
+`;

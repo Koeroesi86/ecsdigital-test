@@ -1,11 +1,15 @@
 const routes = require('./index');
 
+jest.mock('axios', () => ({
+  get: jest.fn(() => Promise.resolve({ data: {} })),
+}));
+
 jest.mock('./cars', () => ({
-  add: jest.fn(),
-  all: jest.fn(),
-  get: jest.fn(),
-  update: jest.fn(),
-  remove: jest.fn(),
+  add: jest.fn(() => Promise.resolve()),
+  all: jest.fn(() => Promise.resolve([])),
+  get: jest.fn(() => Promise.resolve({})),
+  update: jest.fn(() => Promise.resolve()),
+  remove: jest.fn(() => Promise.resolve()),
 }));
 
 /** Mock express */
@@ -20,10 +24,10 @@ describe('The routes', () => {
   it('should register routes', () => {
     routes(app);
 
-    expect(app.get).toHaveBeenCalled();
-    expect(app.post).toHaveBeenCalled();
-    expect(app.put).toHaveBeenCalled();
-    expect(app.delete).toHaveBeenCalled();
+    expect(app.get.mock.calls).toMatchSnapshot();
+    expect(app.post.mock.calls).toMatchSnapshot();
+    expect(app.put.mock.calls).toMatchSnapshot();
+    expect(app.delete.mock.calls).toMatchSnapshot();
   });
 });
 

@@ -14,3 +14,5 @@ module.exports = dbPath => new Promise((resolve, reject) => {
     reject(err);
   });
 });
+
+module.exports.reset = () => db = null;
